@@ -392,8 +392,15 @@ def normalize_counts_to_probs(n_matrix):
 
     return n_matrix/row_sums
 
-# Step 51 - sample_next_token (not yet solved)
-# TODO: implement
+# Step 51 - sample_next_token
+def sample_next_token(p_matrix, current_id, rng):
+    """Sample the next token id from P[current_id] using rng."""
+    np.random.default_rng(rng)
+    row = p_matrix[current_id]
+
+    token = rng.choice(np.arange(len(row)), p=row, size=1)
+
+    return int(token[0])
 
 # Step 52 - generate_sequence (not yet solved)
 # TODO: implement
