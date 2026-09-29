@@ -521,8 +521,13 @@ def derive_dlogits_on_paper():
     """Return a string summarizing the derivation of dL/dlogits for mean cross-entropy."""
     return "dL/dlogits = (probs - onehot(targets)) / B, softmax, lol man what are those tests"
 
-# Step 67 - compute_dlogits (not yet solved)
-# TODO: implement
+# Step 67 - compute_dlogits
+def compute_dlogits(probs, targets):
+    """Gradient of mean cross-entropy w.r.t. logits. probs: (B,V), targets: (B,)."""
+    dlogits = probs.copy()
+    dlogits[np.arange(probs.shape[0]), targets] -= 1
+    dlogits /= len(targets)
+    return dlogits
 
 # Step 68 - derive_dw_on_paper (not yet solved)
 # TODO: implement
